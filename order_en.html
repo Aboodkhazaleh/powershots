@@ -225,6 +225,276 @@
     margin-bottom: 1.5rem;
   }
 }
+
+
+/* Final mobile layout fix */
+@media (max-width: 600px) {
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
+  .nav-container {
+    width: 94%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 0.55rem 0 0.7rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .logo-container {
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0;
+    font-size: clamp(1.35rem, 7vw, 1.9rem);
+    line-height: 1.1;
+  }
+
+  .logo-img {
+    width: 38px;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav ul,
+  .nav-container .nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem !important;
+    font-size: 0.92rem;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav li {
+    margin: 0;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
+
+  .lang-switch {
+    justify-content: center;
+    margin-top: 0.15rem;
+    font-size: 0.9rem;
+  }
+
+  .warning-triangle {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    width: auto !important;
+    height: auto !important;
+    min-height: 0;
+    border-radius: 16px;
+    padding: 0.65rem 2.2rem 0.65rem 0.9rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  }
+
+  .warning-triangle .warning-text {
+    margin: 0;
+    padding: 0;
+    line-height: 1.35;
+  }
+
+  .warning-triangle .close-warning {
+    width: 26px;
+    height: 26px;
+    top: 0.35rem;
+    right: 0.45rem;
+    background: #d92f3b;
+  }
+
+  .hero {
+    padding-top: 2.75rem;
+    min-height: 70vh;
+  }
+
+  .hero h2 {
+    font-size: clamp(1.85rem, 8vw, 2.35rem);
+    line-height: 1.25;
+  }
+
+  .hero p {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    padding-inline: 0.25rem;
+  }
+}
+
+
+/* Compact hamburger menu for phones */
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: var(--light);
+  color: var(--neutral);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+@media (max-width: 600px) {
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
+  .nav-container {
+    width: 94%;
+    display: grid;
+    grid-template-columns: 42px 1fr 42px;
+    grid-template-rows: auto;
+    gap: 0.35rem;
+    padding: 0.55rem 0;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .logo-container {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: center;
+    gap: 0.35rem;
+    margin: 0;
+    font-size: clamp(1.25rem, 6.4vw, 1.8rem);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .logo-img {
+    width: 34px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .nav,
+  .lang-switch {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: none;
+  }
+
+  .nav-container.menu-open .nav {
+    display: block;
+  }
+
+  .nav-container.menu-open .lang-switch {
+    display: flex;
+  }
+
+  .nav ul,
+  .nav-container .nav ul {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    gap: 0.55rem !important;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    padding: 0.45rem 0 0.2rem;
+    margin: 0;
+  }
+
+  .nav li {
+    margin: 0;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
+
+  .lang-switch {
+    justify-content: center;
+    margin-top: 0.1rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-container.menu-open .menu-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-container.menu-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-container.menu-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .warning-triangle {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    width: auto !important;
+    height: auto !important;
+    min-height: 0;
+    border-radius: 16px;
+    padding: 0.65rem 2.2rem 0.65rem 0.9rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  }
+
+  .warning-triangle .warning-text {
+    margin: 0;
+    padding: 0;
+    line-height: 1.35;
+  }
+
+  .warning-triangle .close-warning {
+    width: 26px;
+    height: 26px;
+    top: 0.35rem;
+    right: 0.45rem;
+    background: #d92f3b;
+  }
+
+  .hero {
+    padding-top: 2.75rem;
+    min-height: 70vh;
+  }
+
+  .hero h2 {
+    font-size: clamp(1.85rem, 8vw, 2.35rem);
+    line-height: 1.25;
+  }
+
+  .hero p {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    padding-inline: 0.25rem;
+  }
+}
 </style>
   </head>
   <body>
@@ -287,6 +557,11 @@
           </svg>
           <span class="logo-text">Power&nbsp;Shots</span>
         </div>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
         <nav class="nav">
           <ul style="list-style: none; display: flex; gap: 1.5rem;">
             <li><a href="index_en.html">Home</a></li>
@@ -360,5 +635,18 @@
         });
       });
     </script>
-  </body>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.menu-toggle').forEach((button) => {
+          const navContainer = button.closest('.nav-container');
+          if (!navContainer) return;
+          button.addEventListener('click', () => {
+            const isOpen = navContainer.classList.toggle('menu-open');
+            button.setAttribute('aria-expanded', isOpen.toString());
+          });
+        });
+      });
+    </script>
+</body>
 </html>

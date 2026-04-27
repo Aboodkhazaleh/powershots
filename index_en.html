@@ -644,22 +644,319 @@ section {
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
   }
+}
 
-  /* Stack header elements vertically on small screens */
+
+/* Scroll Video Section */
+.scroll-video-section {
+  background: #fff;
+  padding: 4rem 0;
+  overflow: hidden;
+}
+
+.scroll-video-card {
+  --scroll-shift: 0px;
+  width: min(92vw, 720px);
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(38, 70, 83, 0.18);
+  opacity: 0;
+  transform: translateY(calc(55px + var(--scroll-shift))) scale(0.94);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+  will-change: transform, opacity;
+}
+
+.scroll-video-card.in-view {
+  opacity: 1;
+  transform: translateY(var(--scroll-shift)) scale(1);
+}
+
+.scroll-video-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--light);
+}
+
+@media (max-width: 600px) {
+  .scroll-video-section {
+    padding: 2.5rem 0;
+  }
+
+  .scroll-video-card {
+    border-radius: 18px;
+    width: 94vw;
+  }
+}
+
+
+/* Final mobile layout fix */
+@media (max-width: 600px) {
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
   .nav-container {
-    flex-direction: column;
+    width: 94%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 0.55rem 0 0.7rem;
     align-items: center;
+    justify-items: center;
   }
+
   .logo-container {
-    margin-bottom: 0.5rem;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0;
+    font-size: clamp(1.35rem, 7vw, 1.9rem);
+    line-height: 1.1;
   }
-  .nav ul {
-    flex-direction: column;
+
+  .logo-img {
+    width: 38px;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav ul,
+  .nav-container .nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem !important;
+    font-size: 0.92rem;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
   }
+
+  .nav li {
+    margin: 0;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
+
   .lang-switch {
-    margin-top: 0.5rem;
+    justify-content: center;
+    margin-top: 0.15rem;
+    font-size: 0.9rem;
+  }
+
+  .warning-triangle {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    width: auto !important;
+    height: auto !important;
+    min-height: 0;
+    border-radius: 16px;
+    padding: 0.65rem 2.2rem 0.65rem 0.9rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  }
+
+  .warning-triangle .warning-text {
+    margin: 0;
+    padding: 0;
+    line-height: 1.35;
+  }
+
+  .warning-triangle .close-warning {
+    width: 26px;
+    height: 26px;
+    top: 0.35rem;
+    right: 0.45rem;
+    background: #d92f3b;
+  }
+
+  .hero {
+    padding-top: 2.75rem;
+    min-height: 70vh;
+  }
+
+  .hero h2 {
+    font-size: clamp(1.85rem, 8vw, 2.35rem);
+    line-height: 1.25;
+  }
+
+  .hero p {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    padding-inline: 0.25rem;
+  }
+}
+
+
+/* Compact hamburger menu for phones */
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: var(--light);
+  color: var(--neutral);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+@media (max-width: 600px) {
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
+  .nav-container {
+    width: 94%;
+    display: grid;
+    grid-template-columns: 42px 1fr 42px;
+    grid-template-rows: auto;
+    gap: 0.35rem;
+    padding: 0.55rem 0;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .logo-container {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: center;
+    gap: 0.35rem;
+    margin: 0;
+    font-size: clamp(1.25rem, 6.4vw, 1.8rem);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .logo-img {
+    width: 34px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .nav,
+  .lang-switch {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: none;
+  }
+
+  .nav-container.menu-open .nav {
+    display: block;
+  }
+
+  .nav-container.menu-open .lang-switch {
+    display: flex;
+  }
+
+  .nav ul,
+  .nav-container .nav ul {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    gap: 0.55rem !important;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    padding: 0.45rem 0 0.2rem;
+    margin: 0;
+  }
+
+  .nav li {
+    margin: 0;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
+
+  .lang-switch {
+    justify-content: center;
+    margin-top: 0.1rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-container.menu-open .menu-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-container.menu-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-container.menu-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .warning-triangle {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    width: auto !important;
+    height: auto !important;
+    min-height: 0;
+    border-radius: 16px;
+    padding: 0.65rem 2.2rem 0.65rem 0.9rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  }
+
+  .warning-triangle .warning-text {
+    margin: 0;
+    padding: 0;
+    line-height: 1.35;
+  }
+
+  .warning-triangle .close-warning {
+    width: 26px;
+    height: 26px;
+    top: 0.35rem;
+    right: 0.45rem;
+    background: #d92f3b;
+  }
+
+  .hero {
+    padding-top: 2.75rem;
+    min-height: 70vh;
+  }
+
+  .hero h2 {
+    font-size: clamp(1.85rem, 8vw, 2.35rem);
+    line-height: 1.25;
+  }
+
+  .hero p {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    padding-inline: 0.25rem;
   }
 }
 </style>
@@ -753,6 +1050,11 @@ section {
           </svg>
           <span class="logo-text">Power&nbsp;Shots</span>
         </div>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
         <nav class="nav">
           <ul>
             <li><a href="#home">Home</a></li>
@@ -783,6 +1085,18 @@ section {
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
         <div class="circle circle-3"></div>
+      </div>
+    </section>
+
+    <!-- Scroll Video Section -->
+    <section class="scroll-video-section" aria-label="Power Shots video">
+      <div class="container">
+        <div class="scroll-video-card">
+          <video class="scroll-video" autoplay muted loop playsinline preload="metadata" poster="img/final-logo.png">
+            <source src="video/powershots-scroll.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     </section>
     <!-- Benefits Section -->
@@ -970,6 +1284,37 @@ section {
           });
         }
 
+
+
+        // Animate the video card when it enters the screen and move it subtly while scrolling.
+        const scrollVideoCards = document.querySelectorAll('.scroll-video-card');
+        if (scrollVideoCards.length) {
+          const updateVideoMotion = () => {
+            scrollVideoCards.forEach((card) => {
+              const rect = card.getBoundingClientRect();
+              const centerOffset = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+              const shift = Math.max(-38, Math.min(38, centerOffset * -70));
+              card.style.setProperty('--scroll-shift', `${shift}px`);
+            });
+          };
+
+          if ('IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                entry.target.classList.toggle('in-view', entry.isIntersecting);
+              });
+              updateVideoMotion();
+            }, { threshold: 0.25 });
+            scrollVideoCards.forEach((card) => videoObserver.observe(card));
+          } else {
+            scrollVideoCards.forEach((card) => card.classList.add('in-view'));
+          }
+
+          window.addEventListener('scroll', updateVideoMotion, { passive: true });
+          window.addEventListener('resize', updateVideoMotion);
+          updateVideoMotion();
+        }
+
         // Make the entire product card clickable based on its data-product attribute
         const cards = document.querySelectorAll('.product-card');
         cards.forEach((card) => {
@@ -987,5 +1332,18 @@ section {
         });
       });
     </script>
-  </body>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.menu-toggle').forEach((button) => {
+          const navContainer = button.closest('.nav-container');
+          if (!navContainer) return;
+          button.addEventListener('click', () => {
+            const isOpen = navContainer.classList.toggle('menu-open');
+            button.setAttribute('aria-expanded', isOpen.toString());
+          });
+        });
+      });
+    </script>
+</body>
 </html>
